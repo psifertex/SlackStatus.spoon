@@ -11,6 +11,6 @@ client = WebClient(token=slack_token)
 if len(sys.argv) > 2:
     exp = int(sys.argv[2])
 else:
-    exp = 300 # five minute expiration by default
+    exp = 1500 # fifteen minute expiration by default
 exp += int(time.time())
 client.users_profile_set(profile='{status_emoji:":' + sys.argv[1] + ':", status_expiration: ' + str(exp) + '}')
