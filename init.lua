@@ -11,6 +11,7 @@ obj.version = "0.1"
 obj.author = "Jordan Wiens <jordan@psifertex.com>"
 obj.license = "MIT"
 obj.homepage = "lol wut?"
+obj.debug = false
 
 obj.slackIcon = [[ASCII:
 ............
@@ -109,14 +110,18 @@ function obj:start()
             end
             if newapp ~= "" then
                 if newapp ~= hs.settings.get("slackemoji") then
-                    print("Switching slack icon to " .. newapp)
+                    if obj.debug == true then
+                      print("Switching slack icon to " .. newapp)
+                    end
                     hs.settings.set("slackemoji", newapp)
                     cmd = "/usr/bin/python3 " .. obj.py .. " " .. newapp
                     hs.execute(cmd)
                 end
             end
         else
-            print("Slack status disabled")
+            if obj.debug == true then
+              print("Slack status disabled")
+            end
         end
     end)
     return self
