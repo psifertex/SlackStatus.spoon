@@ -10,3 +10,9 @@ To use:
 3) Select "Permissions"
 4) Add an OAuth User Scope for "users.profile:write"
 5) Copy your OAuth token to a file `.token` where you cloned this repository
+6) Add the following to your `init.lua` hammerspoon config:
+
+```lua
+hs.loadSpoon("SlackStatus")
+spoon.SlackStatus:start()
+```
