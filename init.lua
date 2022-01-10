@@ -93,17 +93,22 @@ function obj:start()
             local title = win:title()
             local appname = win:application():name()
             local newapp = ""
-            if string.match(appname, "Term") and string.match(title, "[vV][iI][mM]") then -- should match both iTerm2 and Terminal
-                newapp = "vim"
+            local zoom = hs.application.get("zoom.us")
+            if zoom ~= nil then -- If zoom is running at all, use that icon
+                newapp = "zoom"
             else
-                if string.match(appname, "^Code$") then
-                    newapp="vscode"
+                if string.match(appname, "Term") and string.match(title, "[vV][iI][mM]") then -- should match both iTerm2 and Terminal
+                    newapp = "vim"
                 else
-                    if string.match(appname, "Chrome") then
-                        newapp="chrome"
+                    if string.match(appname, "^Code$") then
+                        newapp = "vscode"
                     else
-                        if string.match(appname, "Slack") then
-                            newapp="slack"
+                        if string.match(appname, "Chrome") then
+                            newapp = "chrome"
+                        else
+                            if string.match(appname, "Slack") then
+                                newapp = "slack"
+                            end
                         end
                     end
                 end
